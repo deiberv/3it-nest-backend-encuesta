@@ -15,9 +15,8 @@ export class EncuestasController {
     return this.encuestasService.create(createEncuestaDto);
   }
 
-  @Get('/resultado')
-  @ApiOkResponse({ description: 'Resultado de la encuesta' })
-  @ApiResponse({ status: 404, description: 'Estilo no exise' })
+  @Get()
+  @ApiOkResponse({ description: 'Obtiene lista de encuestas' })
   @ApiInternalServerErrorResponse({ description: 'Error interno' })
   obtenerResultados(){
     return this.encuestasService.obtenerResultados();

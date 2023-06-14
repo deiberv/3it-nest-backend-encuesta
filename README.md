@@ -31,6 +31,6 @@ GET http://localhost:3000/api/estilos
 POST http://localhost:3000/api/encuestas
 
 #Resultado de los estilos musicales
-POST http://localhost:3000/api/encuestas/resultado
+GET http://localhost:3000/api/encuestas
 
 ```
