@@ -10,6 +10,7 @@ export class EstilosService {
     @InjectRepository(Estilo)
     private readonly estiloRepository: Repository<Estilo>,
   ) {}
+
   async findAll() {
     return this.estiloRepository.find({});
   }
@@ -21,5 +22,15 @@ export class EstilosService {
       throw new NotFoundException(`No existe el estilo con el id ${id} indicado. `);
 
     return estilo;
+  }
+
+  async findAllWithEncuesta() {
+    const estilosConEncuestas = await this.estiloRepository.createQueryBuilder("estilo")
+      .leftJoinAndSelect("estilo.encuentas", "encuesta")
+      .loadRelationCountAndMap("estilo.totalEncuesta", "estilo.encuentas")
+      .getMany();
+
+    console.log('estilos con encuestas: ', estilosConEncuestas);   
+    return estilosConEncuestas;
   }
 }

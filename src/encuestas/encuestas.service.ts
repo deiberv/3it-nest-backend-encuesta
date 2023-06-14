@@ -5,6 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Encuesta } from './entities/encuesta.entity';
 import { EstilosService } from 'src/estilos/estilos.service';
+import { ResultadoEncuestaDto } from './dto/resultado-encuesta.dto';
 
 @Injectable()
 export class EncuestasService {
@@ -42,10 +43,13 @@ export class EncuestasService {
     }
   }
 
-  async obtenerResultados(){
-    return `Aqui se obtendran los resultados de los totales para cada estilo`;
-  }
+  async obtenerResultados() {
 
+    return (await this.estiloService.findAllWithEncuesta()).map( resultado => {
+      return new ResultadoEncuestaDto( resultado.id, resultado.name, resultado.encuentas?.length);
+    } );
+  }
+  
   //-----------------------------------------------------------------
   //----- Metodos privados ------------------------------------------
   //-----------------------------------------------------------------

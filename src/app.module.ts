@@ -9,6 +9,7 @@ import { EncuestasModule } from './encuestas/encuestas.module';
   imports: [
     //Carga la configuracion de .env
     ConfigModule.forRoot(),
+    //Configuracion de typeOrm
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: process.env.DB_HOST,
@@ -17,8 +18,8 @@ import { EncuestasModule } from './encuestas/encuestas.module';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
       autoLoadEntities: true,
-      synchronize: true,
-      logging: true,
+      synchronize: false,
+      logging: false,
     }),
     EstilosModule,
     SeedModule,
