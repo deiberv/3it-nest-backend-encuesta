@@ -13,6 +13,11 @@ async function bootstrap() {
     }),
   );
 
+  app.enableCors({
+    origin: ['http://localhost:4200'],
+    methods: ['POST', 'PUT', 'DELETE', 'GET']
+  })
+
   //Dcoumentacion de Swagger
   const config = new DocumentBuilder()
     .setTitle('Encuestas RESTFul API')

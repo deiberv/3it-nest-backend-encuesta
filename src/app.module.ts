@@ -11,11 +11,7 @@ import { EncuestasModule } from './encuestas/encuestas.module';
     ConfigModule.forRoot(),
     //Configuracion de typeOrm
     TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: process.env.DB_HOST,
-      port: +process.env.DB_PORT,
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
+      type: 'sqlite',
       database: process.env.DB_DATABASE,
       autoLoadEntities: true,
       synchronize: false,

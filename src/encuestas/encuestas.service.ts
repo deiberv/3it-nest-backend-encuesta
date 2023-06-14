@@ -56,7 +56,7 @@ export class EncuestasService {
   private handleException(error) {
     console.log(error);
 
-    if ( error?.errno === 1062){
+    if ( error?.errno === 19) {
       throw new BadRequestException(`Ya existe registro de email y estilo de musica en la encuentas`);
     }
       
