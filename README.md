@@ -24,16 +24,16 @@ POST http://localhost:3000/api/seed/
 
 ### Peticiones
 ```
-#Obtener listado de estilos
+# Obtener listado de estilos
 GET http://localhost:3000/api/estilos
 
-#Crear una encuesta, realizar el voto sobre el estilo musical
+# Crear una encuesta, realizar el voto sobre el estilo musical
 POST http://localhost:3000/api/encuestas
 
 #Resultado de los estilos musicales, debe ser usuario con ROLE_ADMIN
 GET http://localhost:3000/api/encuestas
 
-#Login de usuario
+# Login de usuario
 POST http://localhost:3000/api/auth/login
 {
   "email": "dvelandria2@gmail.com",
@@ -43,5 +43,8 @@ POST http://localhost:3000/api/auth/login
 Usario disponibles
 test1@google.com - Abc123 - ROLE_ADMIN
 test2@google.com - Abc123 - ROLE_USER
+
+# check-status 
+GET http://localhost:3000/api/auth/check-status
 
 ```

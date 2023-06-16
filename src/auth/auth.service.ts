@@ -31,11 +31,7 @@ export class AuthService {
       });
       const user = await this.userRepository.save(newUser);
       delete user.password;
-      return {
-        ...user,
-        roles: user.roles?.split(','),
-        token: this.getJwtToken({id: user.id })
-      };
+      return this.getUserWithToken(user);
     } catch (error) {
       this.handleDBErrors(error)
     }
@@ -47,21 +43,21 @@ export class AuthService {
 
     const user = await this.userRepository.findOne({
       where: { email },
-      select: { id:true, email: true, password: true }
+      select: { id:true, email: true, password: true, roles: true },
     })
 
     if ( !user || !bcrypt.compareSync( password, user.password ) ) {
       throw new UnauthorizedException(`Credenciales invalidas `)
     }
-
     delete user.password;
+    return this.getUserWithToken(user);
+  }
 
+  async checkAuthStatus(user: User) {
     return {
       ...user,
-      roles: user.roles?.split(','),
       token: this.getJwtToken({id: user.id })
     };
-
   }
   
   //------------------------------------
@@ -70,6 +66,15 @@ export class AuthService {
   private getJwtToken ( payload: JwtPayload ) {
     const access_token = this.jwtService.sign(payload);
     return access_token;
+  }
+
+  private getUserWithToken( user: User) {
+    console.log(user);
+    return {
+      ...user,
+      roles: (user.roles) ? user.roles?.split(',') : [],
+      token: this.getJwtToken({id: user.id })
+    };
   }
 
   private handleDBErrors(error : any) : never {

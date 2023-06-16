@@ -28,20 +28,21 @@ export class AuthGuard implements CanActivate {
     if (!token) {
       throw new UnauthorizedException();
     }
-    console.log(`vamos por aqui`);
     try {
       const payload = await this.jwtService.verify(
-      token,
-      {
-        secret: this.configService.get('JWT_SECRET')
-      });
-
+        token,
+        {
+          secret: this.configService.get('JWT_SECRET')
+        }
+      );
+        console.log(payload);
       const user = await this.userRepository.findOneBy({ id:  payload.id });
       if ( !user || !user.isActive)
         throw new UnauthorizedException();
 
       request['user'] = user;
     } catch (error) {
+
       throw new UnauthorizedException();
     }
     return true;

@@ -3,6 +3,9 @@ import { AuthService } from './auth.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { LoginUserDto } from './dto/login-user.dto';
 import { ApiBadRequestResponse, ApiBody, ApiCreatedResponse, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Auth, GetUser } from './decorators';
+import { User } from './entities/user.entity';
+import { ValidRoles } from './interfaces';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -27,5 +30,11 @@ export class AuthController {
   @ApiBadRequestResponse({ description: 'Datos invalidos' })
   login(@Body() loginDto: LoginUserDto ) {
     return this.authService.login(loginDto);
+  }
+
+  @Auth()
+  @Get('/check-status')
+  checkAuthStatus(@GetUser() user: User) {
+    return this.authService.checkAuthStatus(user);
   }
 }
