@@ -11,6 +11,9 @@ export class EstilosService {
     private readonly estiloRepository: Repository<Estilo>,
   ) {}
 
+  //-----------------------------------------------------------------
+  //----- Metodos Publicos ------------------------------------------
+  //-----------------------------------------------------------------
   async findAll() {
     return this.estiloRepository.find({});
   }
@@ -29,8 +32,7 @@ export class EstilosService {
       .leftJoinAndSelect("estilo.encuentas", "encuesta")
       .loadRelationCountAndMap("estilo.totalEncuesta", "estilo.encuentas")
       .getMany();
-
-    console.log('estilos con encuestas: ', estilosConEncuestas);   
+ 
     return estilosConEncuestas;
   }
 }
