@@ -25,8 +25,9 @@ async function bootstrap() {
     .setTitle('Encuestas RESTFul API')
     .setDescription('Api sistema de encuentas, prueba tecnica 3it')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
-  const document = SwaggerModule.createDocument(app, config);
+  const document = SwaggerModule.createDocument(app, config)  ;
   SwaggerModule.setup('api', app, document);
 
   await app.listen(port);

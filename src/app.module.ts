@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { EstilosModule } from './estilos/estilos.module';
 import { SeedModule } from './seed/seed.module';
 import { EncuestasModule } from './encuestas/encuestas.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -14,12 +15,13 @@ import { EncuestasModule } from './encuestas/encuestas.module';
       type: 'sqlite',
       database: process.env.DB_DATABASE,
       autoLoadEntities: true,
-      synchronize: false,
-      logging: false,
+      synchronize: true,
+      logging: true,
     }),
     EstilosModule,
     SeedModule,
     EncuestasModule,
+    AuthModule,
   ],
 })
 export class AppModule {}
