@@ -1,0 +1,275 @@
+{
+	"info": {
+		"_postman_id": "24697159-123a-4b9d-901a-d65f8be7d730",
+		"name": "3i prueba tecnica",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8265574"
+	},
+	"item": [
+		{
+			"name": "Usarios",
+			"item": [
+				{
+					"name": "Crear Usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"dvelandria3@gmail.com\",\r\n    \"password\": \"Dv123456\",\r\n    \"fullName\": \"Deiber Velandria\",\r\n    \"roles\": [\"ROLE_ADMIN\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{RUTA}}/auth/register",
+							"host": [
+								"{{RUTA}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"test2@google.com\",\r\n    \"password\": \"Abc123\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{RUTA}}/auth/login",
+							"host": [
+								"{{RUTA}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check Status",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BEAR_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"test1@google.com\",\r\n    \"password\": \"Abc123\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{RUTA}}/auth/check-status",
+							"host": [
+								"{{RUTA}}"
+							],
+							"path": [
+								"auth",
+								"check-status"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Encuesta",
+			"item": [
+				{
+					"name": "1. PopulateData",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BEAR_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{RUTA}}/seed",
+							"host": [
+								"{{RUTA}}"
+							],
+							"path": [
+								"seed"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2. Obtener Estilos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BEAR_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{RUTA}}/estilos",
+							"host": [
+								"{{RUTA}}"
+							],
+							"path": [
+								"estilos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3. Crear encuenta",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BEAR_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"deiberv2@gmail.com\",\r\n  \"estilo\": \"bdd4a92a-20b1-4edc-a4ab-6e00791cad93\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{RUTA}}/encuestas",
+							"host": [
+								"{{RUTA}}"
+							],
+							"path": [
+								"encuestas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4. Obtener Resultado",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{BEAR_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"deiberv@gmail.com\",\r\n  \"estilo\": \"4d19a154-57fe-49fc-b354-c2922febdeb9\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{RUTA}}/encuestas",
+							"host": [
+								"{{RUTA}}"
+							],
+							"path": [
+								"encuestas"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "RUTA",
+			"value": "http://localhost:3000/api",
+			"type": "string"
+		},
+		{
+			"key": "BEAR_TOKEN",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDQzNmRjLTFmZTUtNGI1OS1hZTQxLTNmYWNkNjc2Mzk4YiIsImlhdCI6MTY4NjkxNzMzOCwiZXhwIjoxNjg2OTI0NTM4fQ.PZdhv1f7Yg5EEoG4OumCVPH8YWXkkdkxWKS1hWpqxUg",
+			"type": "string"
+		}
+	]
+}

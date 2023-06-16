@@ -48,3 +48,11 @@ test2@google.com - Abc123 - ROLE_USER
 GET http://localhost:3000/api/auth/check-status
 
 ```
+
+
+## Proceso para el testeo
+Se adjunta archivo 3i prueba tecnica.postman_collection.json de postman con las peticiones http que se pueden realizar
+Se hace validaciones auth mediante token Bearer obtenido al hacer login
+
+El usuario con ROLE_ADMIN puede realizar cualquier petición del sistema
+El usuario con ROLE_USER puede emitir votos o cargar a la encuenta, pero no puede ver los resultados de la misma

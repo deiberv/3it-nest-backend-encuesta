@@ -35,11 +35,12 @@ export class AuthGuard implements CanActivate {
           secret: this.configService.get('JWT_SECRET')
         }
       );
-        console.log(payload);
+
       const user = await this.userRepository.findOneBy({ id:  payload.id });
       if ( !user || !user.isActive)
         throw new UnauthorizedException();
-
+      
+      console.log(`Se ha obtenido el usuario`)
       request['user'] = user;
     } catch (error) {
 

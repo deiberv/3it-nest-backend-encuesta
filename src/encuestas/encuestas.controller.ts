@@ -19,6 +19,10 @@ export class EncuestasController {
   @ApiBody({ type: [CreateEncuestaDto] })
   @ApiCreatedResponse({ description: 'Encuesta creada', type: Encuesta })
   @ApiBadRequestResponse({ description: 'Error en el request'})
+  @ApiUnauthorizedResponse({ description: "Unauthorized" })
+  @ApiForbiddenResponse({ description: "Forbidden" })
+  @ApiBearerAuth()
+  @Auth(ValidRoles.ADMIN, ValidRoles.USER)
   create(@Body() createEncuestaDto: CreateEncuestaDto) {
     return this.encuestasService.create(createEncuestaDto);
   }
